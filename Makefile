@@ -43,6 +43,10 @@ tag: ## Create the signed git tag for the current version (triggers the release 
 install: up ## Install dependencies without running install scripts
 	@$(YARN) install --frozen-lockfile --ignore-scripts
 
+.PHONY: test
+test: up ## Run the test suite
+	@$(YARN) test
+
 .PHONY: icons
 icons: up ## Regenerate the icons
 	@$(YARN) icons
