@@ -300,3 +300,26 @@ test("installs never run dependency scripts, and never rewrite the lock file", (
 test("the Chrome Web Store gets a draft, never an automatic publication", () => {
   assert.doesNotMatch(read(".github/workflows/release.yml").replace(/#.*$/gm, ""), /auto-publish/);
 });
+
+// —— documentation ———————————————————————————————————————————
+
+test("the store listing justifies exactly what the manifest asks for", () => {
+  const listing = read("STORE_LISTING.md");
+  for (const permission of manifest.permissions) assert.match(listing, new RegExp(`\\| \`${permission}\` \\|`), permission);
+  for (const match of manifest.content_scripts[0].matches) assert.ok(listing.includes(`\`${match}\` (content script)`), match);
+  const justified = [...listing.matchAll(/^\| `([^`]+)`/gm)].map((m) => m[1]);
+  const declared = [...manifest.permissions, ...manifest.content_scripts[0].matches];
+  assert.deepEqual(justified.sort(), declared.sort());
+});
+
+test("the store summary is the manifest description, within the 132-character limit", () => {
+  const description = json("src/_locales/en/messages.json").extensionDescription.message;
+  assert.ok(description.length <= 132);
+  assert.ok(read("STORE_LISTING.md").includes(`**Summary** (≤ 132 characters): ${description}`));
+});
+
+test("the README and PRIVACY say it is not a confidentiality control", () => {
+  for (const f of ["README.md", "PRIVACY.md", "STORE_LISTING.md"]) {
+    assert.match(read(f), /not a confidentiality control/i, f);
+  }
+});

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TrimReply — compose mock</title>
+  <!--
+    A STAND-IN for a Gmail compose, used only to render the README screenshots
+    (docs/assets/screenshot-bar*.png) without capturing anyone's mailbox.
+    It mounts the REAL bar (src/content/bar.js) on fake session states.
+    Render it with Playwright at 760x260: ?state=trimmed | uncertain | offer
+  -->
+  <style>
+    body { margin: 0; padding: 24px; background: #f6f8fc; font: 14px/1.5 Arial, sans-serif; color: #1f1f1f; }
+    .compose { background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(60,64,67,.3); padding: 16px 20px; max-width: 700px; }
+    .to { color: #444746; padding-bottom: 12px; border-bottom: 1px solid #e0e0e0; margin-bottom: 12px; }
+    .body p { margin: 0 0 6px; }
+    .actions { margin-top: 14px; }
+    .send { display: inline-block; background: #0b57d0; color: #fff; border-radius: 18px; padding: 8px 24px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="compose">
+    <div class="to">Alex Martin</div>
+    <div class="body"><div class="editor"><p>Sounds good, Thursday works for me.</p><p>— Sam</p></div></div>
+    <div class="actions"><span class="send">Send</span></div>
+  </div>
+  <script>
+    globalThis.Platform = { t: (key, fallback) => fallback };
+  </script>
+  <script src="../../src/ui/dom.js"></script>
+  <script src="../../src/content/bar.js"></script>
+  <script>
+    const state = new URLSearchParams(location.search).get("state") || "trimmed";
+    const count = { label: () => "14" };
+    const STATES = {
+      trimmed: { offersTrim: false, offersUndo: true, warnsUncertain: false, data: { removedMessages: count } },
+      uncertain: { offersTrim: false, offersUndo: true, warnsUncertain: true, data: { removedMessages: count } },
+      offer: { offersTrim: true, offersUndo: false, warnsUncertain: false, data: {} },
+    };
+    const bar = TrimReplyBar.create({ onTrim() {}, onUndo() {}, display: { bar: true } });
+    document.querySelector(".editor").after(bar.host);
+    bar.render(STATES[state]);
+  </script>
+</body>
+</html>

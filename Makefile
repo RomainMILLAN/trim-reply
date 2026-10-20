@@ -74,6 +74,14 @@ build: up ## Build the Chrome and Firefox packages
 sign-firefox: up ## Sign the Firefox xpi via AMO (needs WEB_EXT_API_KEY / WEB_EXT_API_SECRET)
 	@$(DC) exec -T -e WEB_EXT_API_KEY -e WEB_EXT_API_SECRET node yarn sign:firefox
 
+.PHONY: start-chromium
+start-chromium: ## Run the extension in a fresh Chromium profile (on the host: web-ext needs a browser)
+	@node_modules/.bin/web-ext run --source-dir=src --target=chromium
+
+.PHONY: start-firefox
+start-firefox: ## Run the extension in a fresh Firefox profile (on the host)
+	@node_modules/.bin/web-ext run --source-dir=src
+
 .PHONY: clean
 clean: ## Remove generated directories
 	@rm -rf build web-ext-artifacts
