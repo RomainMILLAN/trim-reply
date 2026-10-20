@@ -256,3 +256,47 @@ test("the icon's brand colour is the pages' --brand", async () => {
   const hex = "#" + BRAND.map((c) => c.toString(16).padStart(2, "0")).join("");
   assert.match(read("src/ui/tokens.css"), new RegExp(`--brand: ${hex};`));
 });
+
+// —— workflows ——————————————————————————————————————————————
+
+const WORKFLOWS = [".github/workflows/ci.yml", ".github/workflows/release.yml"];
+
+test("every action is pinned to a full commit SHA", () => {
+  for (const f of WORKFLOWS) {
+    for (const [, ref] of read(f).matchAll(/^\s*-?\s*uses:\s*([^\s#]+)/gm)) {
+      assert.match(ref, /@[0-9a-f]{40}$/, `${f}: ${ref}`);
+    }
+  }
+});
+
+test("workflows grant nothing by default", () => {
+  for (const f of WORKFLOWS) assert.match(read(f), /^permissions: \{\}$/m, f);
+});
+
+test("CI never sees a secret: a fork pull request runs it with untrusted code", () => {
+  assert.doesNotMatch(read(".github/workflows/ci.yml").replace(/#.*$/gm, ""), /secrets\./);
+});
+
+test("in the release, secrets reach only the steps that need them, behind the protected environment", () => {
+  const release = read(".github/workflows/release.yml").replace(/#.*$/gm, "");
+  const publish = release.slice(release.indexOf("  publish:"));
+  assert.match(publish, /environment: release/);
+  assert.doesNotMatch(release.slice(0, release.indexOf("  publish:")), /secrets\./, "the build job holds no secret");
+  for (const line of publish.split("\n").filter((l) => l.includes("secrets."))) {
+    assert.match(line, /^\s+(HAS_AMO_CREDENTIALS|WEB_EXT_API_KEY|WEB_EXT_API_SECRET|CWS_\w+): \$\{\{ secrets\./, line.trim());
+  }
+});
+
+test("installs never run dependency scripts, and never rewrite the lock file", () => {
+  for (const f of WORKFLOWS) {
+    for (const [line] of read(f).replace(/#.*$/gm, "").matchAll(/^.*\byarn install\b.*$/gm)) {
+      assert.match(line, /--frozen-lockfile/, `${f}: ${line.trim()}`);
+      assert.match(line, /--ignore-scripts/, `${f}: ${line.trim()}`);
+    }
+    assert.doesNotMatch(read(f).replace(/#.*$/gm, ""), /\bnpm (ci|install)\b/, f);
+  }
+});
+
+test("the Chrome Web Store gets a draft, never an automatic publication", () => {
+  assert.doesNotMatch(read(".github/workflows/release.yml").replace(/#.*$/gm, ""), /auto-publish/);
+});

@@ -60,6 +60,11 @@ sync-signature: ## Resync the vendored author signature and fail if the copy dri
 lint: up ## Validate the Firefox package with addons-linter
 	@$(YARN) lint
 
+.PHONY: lint-workflows
+lint-workflows: ## Audit the GitHub workflows (actionlint + zizmor), as CI does
+	@docker run --rm -v "$(CURDIR):/repo:ro" -w /repo rhysd/actionlint:1.7.12 -color
+	@docker run --rm -v "$(CURDIR):/repo:ro" -w /repo ghcr.io/zizmorcore/zizmor:1.29.0 --offline --min-severity low .github/workflows
+
 .PHONY: build
 build: up ## Build the Chrome and Firefox packages
 	@$(YARN) build:chrome
