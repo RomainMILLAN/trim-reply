@@ -1,6 +1,6 @@
 {
   "name": "trim-reply",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Strip the quoted history from your Gmail replies before you send them.",
   "license": "MIT",
   "private": true,
