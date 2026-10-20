@@ -6,5 +6,27 @@
   "extensionDescription": {
     "message": "Strip the quoted history from your Gmail replies before you send them. Local only, no network.",
     "description": "Store and browser description, 132 characters at most."
+  },
+  "barTrim": {
+    "message": "Trim quoted history",
+    "description": "Button in the Gmail compose that removes the quoted history."
+  },
+  "barUndo": {
+    "message": "Undo",
+    "description": "Button that puts the removed quoted history back."
+  },
+  "barRemoved": {
+    "message": "Quoted history removed ($COUNT$)",
+    "description": "Shown after a trim; $COUNT$ is the number of quoted emails removed, possibly with a + when there were more.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "barUncertain": {
+    "message": "Trim uncertain: check the quote is gone before sending.",
+    "description": "Warning shown when Gmail might still append the quote on send."
   }
 }

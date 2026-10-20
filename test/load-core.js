@@ -21,6 +21,8 @@ const ORDER = [
   "mail/gmail/selectors.js",
   "mail/gmail/compose.js",
   "mail/gmail/gmail-adapter.js",
+  "ui/dom.js",
+  "content/bar.js",
   "content/trim-run.js",
   "content/main.js",
   // content/boot-gmail.js is NOT loaded: it starts the extension on import.

@@ -132,6 +132,11 @@ class ClassList {
   contains(name) { return this.values().includes(name); }
   add(...names) { this.el.setAttribute("class", [...new Set([...this.values(), ...names])].join(" ")); }
   remove(...names) { this.el.setAttribute("class", this.values().filter((n) => !names.includes(n)).join(" ")); }
+  toggle(name, force) {
+    const on = force === undefined ? !this.contains(name) : Boolean(force);
+    if (on) this.add(name); else this.remove(name);
+    return on;
+  }
 }
 
 class Node {
@@ -265,6 +270,7 @@ class Element extends Node {
 
   get children() { return nodeList(this.childNodes.filter((c) => c.nodeType === 1)); }
   get firstElementChild() { return this.childNodes.find((c) => c.nodeType === 1) || null; }
+  get firstChild() { return this.childNodes[0] || null; }
 
   getAttribute(name) { return this.attributes.has(name) ? this.attributes.get(name) : null; }
   hasAttribute(name) { return this.attributes.has(name); }

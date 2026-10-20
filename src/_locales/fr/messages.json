@@ -6,5 +6,27 @@
   "extensionDescription": {
     "message": "Retire l'historique cité de vos réponses Gmail avant l'envoi. Tout reste local, aucun réseau.",
     "description": "Description du store et du navigateur, 132 caractères au plus."
+  },
+  "barTrim": {
+    "message": "Couper l'historique",
+    "description": "Bouton de la composition Gmail qui retire l'historique cité."
+  },
+  "barUndo": {
+    "message": "Annuler",
+    "description": "Bouton qui remet l'historique retiré."
+  },
+  "barRemoved": {
+    "message": "Historique cité retiré ($COUNT$)",
+    "description": "Affiché après une coupe ; $COUNT$ est le nombre de messages cités retirés, éventuellement suivi d'un +.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "barUncertain": {
+    "message": "Coupe incertaine : vérifiez que la citation a disparu avant d'envoyer.",
+    "description": "Avertissement quand Gmail pourrait encore ajouter la citation à l'envoi."
   }
 }
