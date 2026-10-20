@@ -17,7 +17,7 @@
     "sign:firefox-packaged": "web-ext sign --source-dir=build/firefox --channel=unlisted"
   },
   "devDependencies": {
-    "chrome-webstore-upload-cli": "4.0.1",
-    "web-ext": "10.6.0"
+    "chrome-webstore-upload-cli": "4.0.2",
+    "web-ext": "10.7.0"
   }
 }
