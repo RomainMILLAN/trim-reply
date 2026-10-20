@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "default_locale": "en",
+  "name": "__MSG_extensionName__",
+  "version": "0.1.0",
+  "description": "__MSG_extensionDescription__",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "homepage_url": "https://github.com/RomainMILLAN/trim-reply",
+  "permissions": [
+    "storage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; worker-src 'self'"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "trim-reply@romainmillan",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+# Development container: every yarn command runs here, never on the host.
+#   make up        start it
+#   make install   yarn install --frozen-lockfile --ignore-scripts
+services:
+  node:
+    image: node:22.14.0-alpine
+    working_dir: /app
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      HOME: /tmp
+      YARN_CACHE_FOLDER: /app/.yarn-cache
+    volumes:
+      - .:/app
+    command: ["tail", "-f", "/dev/null"]

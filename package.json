@@ -1,0 +1,21 @@
+{
+  "name": "trim-reply",
+  "version": "0.1.0",
+  "description": "Strip the quoted history from your Gmail replies before you send them.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "icons": "node scripts/make-icons.mjs",
+    "build:chrome-src": "node scripts/build-chrome-src.mjs",
+    "build:firefox-src": "node scripts/build-firefox-src.mjs",
+    "lint": "yarn build:firefox-src && web-ext lint --source-dir=build/firefox",
+    "build:chrome": "yarn build:chrome-src && web-ext build --source-dir=build/chrome --filename=trim-reply-chrome-{version}.zip --overwrite-dest",
+    "build:firefox": "yarn build:firefox-src && web-ext build --source-dir=build/firefox --filename=trim-reply-firefox-{version}.zip --overwrite-dest",
+    "sign:firefox": "yarn build:firefox-src && web-ext sign --source-dir=build/firefox --channel=unlisted"
+  },
+  "devDependencies": {
+    "chrome-webstore-upload-cli": "4.0.1",
+    "web-ext": "10.6.0"
+  }
+}

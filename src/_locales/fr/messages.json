@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "TrimReply",
+    "description": "Nom de l'extension. Non traduit."
+  },
+  "extensionDescription": {
+    "message": "Retire l'historique cité de vos réponses Gmail avant l'envoi. Tout reste local, aucun réseau.",
+    "description": "Description du store et du navigateur, 132 caractères au plus."
+  }
+}

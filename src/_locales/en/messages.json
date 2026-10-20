@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "TrimReply",
+    "description": "Extension name. Not translated."
+  },
+  "extensionDescription": {
+    "message": "Strip the quoted history from your Gmail replies before you send them. Local only, no network.",
+    "description": "Store and browser description, 132 characters at most."
+  }
+}
