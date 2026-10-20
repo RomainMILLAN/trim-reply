@@ -65,13 +65,23 @@
       const input = Dom.el("input", {
         type: "number", id: "threshold", min: MIN, max: MAX, step: 1, value: ctx.settings.rules.threshold,
       });
-      input.addEventListener("change", () => {
+      // Saved WHILE TYPING, not only on `change`: `change` waits for the field to
+      // lose focus, and switching to the Gmail tab does not blur it -- the value
+      // on screen was then never the one in force. A partial or out-of-range value
+      // is not saved; leaving the field shows the value actually kept.
+      const save = () => {
         const threshold = Number(input.value);
-        ctx.update((raw) => ({ ...raw, rules: { ...raw.rules, threshold } }));
+        if (!Number.isInteger(threshold) || threshold < MIN || threshold > MAX) return Promise.resolve();
+        return ctx.update((raw) => ({ ...raw, rules: { ...raw.rules, threshold } }));
+      };
+      input.addEventListener("input", save);
+      input.addEventListener("change", async () => {
+        await save();
+        input.value = String(ctx.settings.rules.threshold);
       });
       return section("threshold", t("sectionThreshold", "Short threads"), [
         Dom.el("div", { class: "field" }, [
-          Dom.el("label", { for: "threshold", text: t("thresholdLabel", "Trim automatically only when the quote holds at least this many emails") }),
+          Dom.el("label", { for: "threshold", text: t("thresholdLabel", "Trim automatically only when the quote holds at least this many emails (1 = always)") }),
           input,
         ]),
         Dom.el("p", { class: "hint", text: t("thresholdHint", "The Trim button ignores this limit.") }),

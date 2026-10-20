@@ -63,16 +63,39 @@ test("choosing the keep mode saves it", async () => {
   assert.equal((await saved(api)).rules.keep, "repliedMessage");
 });
 
-test("the threshold is saved, and a value the content script would refuse falls back", async () => {
+const typeInto = (input, value) => {
+  input.value = value;
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+};
+
+test("the threshold is saved while typing, without waiting for the field to lose focus", async () => {
   const { api, $ } = await mountForm();
-  $("#threshold").value = "7";
-  change($("#threshold"));
+  typeInto($("#threshold"), "1");
   await tick();
-  assert.equal((await saved(api)).rules.threshold, 7);
+  assert.equal((await saved(api)).rules.threshold, 1, "switching to Gmail does not blur the field");
+});
+
+test("a partial or out-of-range threshold is never saved while typing", async () => {
+  const { api, $ } = await mountForm({ stored: { rules: { threshold: 3 } } });
+  for (const value of ["", "0", "500", "1.5"]) {
+    typeInto($("#threshold"), value);
+    await tick();
+    assert.equal((await saved(api)).rules.threshold, 3, `"${value}"`);
+  }
+});
+
+test("leaving the field shows the value actually kept", async () => {
+  const { api, $ } = await mountForm({ stored: { rules: { threshold: 3 } } });
   $("#threshold").value = "500";
   change($("#threshold"));
-  await tick();
-  assert.equal((await saved(api)).rules.threshold, 2);
+  await tick(); await tick();
+  assert.equal($("#threshold").value, "3");
+  assert.equal((await saved(api)).rules.threshold, 3);
+  $("#threshold").value = "7";
+  change($("#threshold"));
+  await tick(); await tick();
+  assert.equal($("#threshold").value, "7");
+  assert.equal((await saved(api)).rules.threshold, 7);
 });
 
 test("masking the bar saves it, and keeps the rest untouched", async () => {

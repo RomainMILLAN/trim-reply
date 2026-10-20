@@ -57,7 +57,7 @@
     "message": "Short threads"
   },
   "thresholdLabel": {
-    "message": "Trim automatically only when the quote holds at least this many emails"
+    "message": "Trim automatically only when the quote holds at least this many emails (1 = always)"
   },
   "thresholdHint": {
     "message": "The Trim button ignores this limit."

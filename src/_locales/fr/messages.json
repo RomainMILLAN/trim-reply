@@ -57,7 +57,7 @@
     "message": "Fils courts"
   },
   "thresholdLabel": {
-    "message": "Ne couper automatiquement que si la citation contient au moins ce nombre de messages"
+    "message": "Ne couper automatiquement que si la citation contient au moins ce nombre de messages (1 = toujours)"
   },
   "thresholdHint": {
     "message": "Le bouton « Couper l'historique » ignore cette limite."
