@@ -14,6 +14,10 @@ const ORDER = [
   "core/trim-policy.js",
   "core/counter.js",
   "core/compose-session.js",
+  "mail/mail-contract.js",
+  "mail/gmail/selectors.js",
+  "mail/gmail/compose.js",
+  "mail/gmail/gmail-adapter.js",
 ];
 
 let loaded = false;
