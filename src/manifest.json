@@ -14,6 +14,33 @@
   "permissions": [
     "storage"
   ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "platform.js",
+        "core/message-count.js",
+        "core/settings.js",
+        "core/quote-shape.js",
+        "core/compose-context.js",
+        "core/trim-policy.js",
+        "core/counter.js",
+        "core/compose-session.js",
+        "settings-repository.js",
+        "stats-repository.js",
+        "mail/mail-contract.js",
+        "mail/gmail/selectors.js",
+        "mail/gmail/compose.js",
+        "mail/gmail/gmail-adapter.js",
+        "content/trim-run.js",
+        "content/main.js",
+        "content/boot-gmail.js"
+      ]
+    }
+  ],
   "content_security_policy": {
     "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; worker-src 'self'"
   },
@@ -22,7 +49,9 @@
       "id": "trim-reply@romainmillan",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": ["none"]
+        "required": [
+          "none"
+        ]
       }
     }
   }
