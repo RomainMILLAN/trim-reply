@@ -1,0 +1,104 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 14px/1.5 var(--font);
+  color: var(--text);
+  background: var(--paper);
+}
+
+.page { padding: 32px 16px; }
+.card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.app-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--brand);
+  display: grid;
+  place-items: center;
+}
+.mark img { width: 36px; height: 36px; border-radius: 9px; }
+h1 { margin: 0; font-size: 17px; }
+.hd-txt p { margin: 2px 0 0; color: var(--muted); font-size: 12.5px; }
+.ver { margin-left: auto; color: var(--muted); font: 12px var(--mono); }
+
+.section { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.section:last-child { border-bottom: none; }
+h2 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+
+.field { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.field.check label { cursor: pointer; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--brand); width: 16px; height: 16px; margin: 0; }
+input[type="number"] {
+  width: 72px;
+  padding: 4px 8px;
+  font: inherit;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.hint { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+.count { margin: 0; font-size: 15px; }
+
+.status { margin: 0 0 8px; }
+.status.warn {
+  padding: 8px 10px;
+  color: var(--amber);
+  background: var(--amber-wash);
+  border: 1px solid var(--amber-line);
+  border-radius: 6px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  background: transparent;
+}
+button.primary { color: var(--on-brand); background: var(--brand); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--brand-deep); outline-offset: 2px; }
+[hidden] { display: none !important; }
+
+/* Author signature -- see ui/author-signature.css for the vendored stylesheet.
+   Themed through its published --rm-tag-* variables, never by editing the copy. */
+.site-foot { display: flex; justify-content: center; padding: 22px 0 4px; }
+.signature { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
+.signature .rm-tag-logo {
+  width: 88px;
+  --rm-tag-filled-color: var(--muted, currentColor);
+  --rm-tag-stroke-color: var(--muted, currentColor);
+}
+.signature-domain { font: 10.5px var(--mono); color: var(--muted); }
+@media (prefers-reduced-motion: reduce) {
+  .signature, .signature *, .signature *::before, .signature *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Popup: compact, no frame. */
+.is-compact .page { padding: 0; }
+.is-compact .card { max-width: none; width: 340px; border: none; border-radius: 0; }
+.is-compact .app-hd { padding: 13px 16px; }
+.is-compact .section { padding: 12px 16px; }
+.is-compact .site-foot { display: none; }
+.actions { padding: 12px 16px; }

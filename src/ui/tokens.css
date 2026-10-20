@@ -1,0 +1,50 @@
+/**
+ * Design tokens for the popup and the options page.
+ *
+ * --brand must stay in step with BRAND in scripts/make-icons.mjs, which paints
+ * the toolbar icon. Colour is never the only signal: every state also carries
+ * a word.
+ */
+:root {
+  --brand: #0f766e;
+  --brand-deep: #115e59;
+  --brand-wash: #f0fdfa;
+  --brand-line: #99f6e4;
+  --on-brand: #ffffff;
+
+  --text: #16211f;
+  --muted: #5b6662;
+  --paper: #f5f4f0;
+  --card: #ffffff;
+  --line: #e6e4dd;
+  --field: #fbfbf9;
+
+  --amber: #9a3412;
+  --amber-wash: #fff7ed;
+  --amber-line: #fdba74;
+
+  --radius: 10px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #2dd4bf;
+    --brand-deep: #5eead4;
+    --brand-wash: #042f2e;
+    --brand-line: #115e59;
+    --on-brand: #042f2e;
+
+    --text: #e7ecea;
+    --muted: #a3afab;
+    --paper: #121614;
+    --card: #1a201e;
+    --line: #2c3431;
+    --field: #161b19;
+
+    --amber: #fdba74;
+    --amber-wash: #431407;
+    --amber-line: #9a3412;
+  }
+}

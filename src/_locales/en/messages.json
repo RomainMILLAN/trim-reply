@@ -28,5 +28,86 @@
   "barUncertain": {
     "message": "Trim uncertain: check the quote is gone before sending.",
     "description": "Warning shown when Gmail might still append the quote on send."
+  },
+  "optionsSubtitle": {
+    "message": "Strip the quoted history from your Gmail replies."
+  },
+  "openOptions": {
+    "message": "All settings"
+  },
+  "sectionAuto": {
+    "message": "Automatic trim"
+  },
+  "autoLabel": {
+    "message": "Trim the quoted history as soon as a reply opens"
+  },
+  "autoHint": {
+    "message": "When off, a Trim button is offered in each reply instead."
+  },
+  "sectionMode": {
+    "message": "What to remove"
+  },
+  "keepNothing": {
+    "message": "All the quoted history (recommended)"
+  },
+  "keepReplied": {
+    "message": "All but the message I am replying to"
+  },
+  "sectionThreshold": {
+    "message": "Short threads"
+  },
+  "thresholdLabel": {
+    "message": "Trim automatically only when the quote holds at least this many emails"
+  },
+  "thresholdHint": {
+    "message": "The Trim button ignores this limit."
+  },
+  "sectionBar": {
+    "message": "In Gmail"
+  },
+  "barLabel": {
+    "message": "Show what was removed, with Undo, after a trim"
+  },
+  "barHint": {
+    "message": "The Trim button and the uncertain-trim warning are always shown."
+  },
+  "sectionStorage": {
+    "message": "Where settings are kept"
+  },
+  "areaLocal": {
+    "message": "This browser only (recommended)"
+  },
+  "areaSync": {
+    "message": "Synced with my browser account"
+  },
+  "areaHint": {
+    "message": "Only the settings are synced. The counter and your emails never leave this browser."
+  },
+  "sectionCounter": {
+    "message": "Counter"
+  },
+  "counterValue": {
+    "message": "Replies lightened: $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "sectionAccess": {
+    "message": "Access to Gmail"
+  },
+  "accessGrant": {
+    "message": "Allow access to Gmail"
+  },
+  "accessGranted": {
+    "message": "TrimReply can work on mail.google.com."
+  },
+  "accessMissing": {
+    "message": "TrimReply has no access to mail.google.com: it does nothing in Gmail."
+  },
+  "accessRefused": {
+    "message": "The browser refused the request: grant it from the extension's site access settings."
   }
 }

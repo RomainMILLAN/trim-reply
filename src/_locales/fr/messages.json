@@ -28,5 +28,86 @@
   "barUncertain": {
     "message": "Coupe incertaine : vérifiez que la citation a disparu avant d'envoyer.",
     "description": "Avertissement quand Gmail pourrait encore ajouter la citation à l'envoi."
+  },
+  "optionsSubtitle": {
+    "message": "Retire l'historique cité de vos réponses Gmail."
+  },
+  "openOptions": {
+    "message": "Tous les réglages"
+  },
+  "sectionAuto": {
+    "message": "Coupe automatique"
+  },
+  "autoLabel": {
+    "message": "Couper l'historique cité dès qu'une réponse s'ouvre"
+  },
+  "autoHint": {
+    "message": "Désactivée, un bouton « Couper l'historique » est proposé dans chaque réponse."
+  },
+  "sectionMode": {
+    "message": "Ce qui est retiré"
+  },
+  "keepNothing": {
+    "message": "Tout l'historique cité (recommandé)"
+  },
+  "keepReplied": {
+    "message": "Tout sauf le message auquel je réponds"
+  },
+  "sectionThreshold": {
+    "message": "Fils courts"
+  },
+  "thresholdLabel": {
+    "message": "Ne couper automatiquement que si la citation contient au moins ce nombre de messages"
+  },
+  "thresholdHint": {
+    "message": "Le bouton « Couper l'historique » ignore cette limite."
+  },
+  "sectionBar": {
+    "message": "Dans Gmail"
+  },
+  "barLabel": {
+    "message": "Afficher ce qui a été retiré, avec Annuler, après une coupe"
+  },
+  "barHint": {
+    "message": "Le bouton de coupe et l'avertissement de coupe incertaine restent toujours affichés."
+  },
+  "sectionStorage": {
+    "message": "Où sont gardés les réglages"
+  },
+  "areaLocal": {
+    "message": "Ce navigateur uniquement (recommandé)"
+  },
+  "areaSync": {
+    "message": "Synchronisés avec mon compte de navigateur"
+  },
+  "areaHint": {
+    "message": "Seuls les réglages sont synchronisés. Le compteur et vos e-mails ne quittent jamais ce navigateur."
+  },
+  "sectionCounter": {
+    "message": "Compteur"
+  },
+  "counterValue": {
+    "message": "Réponses allégées : $COUNT$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "12"
+      }
+    }
+  },
+  "sectionAccess": {
+    "message": "Accès à Gmail"
+  },
+  "accessGrant": {
+    "message": "Autoriser l'accès à Gmail"
+  },
+  "accessGranted": {
+    "message": "TrimReply peut agir sur mail.google.com."
+  },
+  "accessMissing": {
+    "message": "TrimReply n'a pas accès à mail.google.com : il ne fait rien dans Gmail."
+  },
+  "accessRefused": {
+    "message": "Le navigateur a refusé la demande : accordez l'accès depuis les réglages d'accès aux sites de l'extension."
   }
 }

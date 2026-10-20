@@ -287,6 +287,10 @@ class Element extends Node {
   set className(v) { this.setAttribute("class", v); }
   get id() { return this.getAttribute("id") || ""; }
 
+  /** Like a browser: the attribute is the default, the property is the live state. */
+  get checked() { return this.liveChecked ?? this.hasAttribute("checked"); }
+  set checked(v) { this.liveChecked = Boolean(v); }
+
   get value() { return this.getAttribute("value") || ""; }
   set value(v) { this.setAttribute("value", v); }
 

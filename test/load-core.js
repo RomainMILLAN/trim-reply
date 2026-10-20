@@ -22,6 +22,7 @@ const ORDER = [
   "mail/gmail/compose.js",
   "mail/gmail/gmail-adapter.js",
   "ui/dom.js",
+  "ui/settings-form.js",
   "content/bar.js",
   "content/trim-run.js",
   "content/main.js",
